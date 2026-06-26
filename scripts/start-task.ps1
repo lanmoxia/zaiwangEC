@@ -58,7 +58,9 @@ $replacements = @{
 foreach ($key in $replacements.Keys) {
   $value = $replacements[$key]
   $replacement = "{0}: {1}" -f $key, $value
-  $content = [regex]::Replace($content, "(?m)^$([regex]::Escape($key))\s*:.*$", $replacement)
+  $escapedKey = [regex]::Escape($key)
+  $pattern = "(?m)^" + $escapedKey + "\s*:.*$"
+  $content = [regex]::Replace($content, $pattern, $replacement)
 }
 
 Set-Content -Path "PROJECT_STATUS.md" -Value $content -Encoding UTF8
