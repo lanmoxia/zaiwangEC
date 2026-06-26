@@ -1,0 +1,76 @@
+name: AI 开发任务
+description: 为 Claude 实现和 Codex 评审创建一个可执行任务
+title: "TASK-XXXX: "
+labels:
+  - task
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 任务目标
+      description: 用一至三句话说明完成后新增或改变的可观察行为。
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景
+      description: 说明为什么需要该变更，以及它位于哪个业务流程。
+    validations:
+      required: true
+  - type: textarea
+    id: must
+    attributes:
+      label: 必须完成
+      placeholder: "- [ ] "
+    validations:
+      required: true
+  - type: textarea
+    id: not_do
+    attributes:
+      label: 明确不做
+      placeholder: "- [ ] "
+    validations:
+      required: true
+  - type: textarea
+    id: allowed_paths
+    attributes:
+      label: 允许修改
+      placeholder: "- path/to/module"
+    validations:
+      required: true
+  - type: textarea
+    id: forbidden_paths
+    attributes:
+      label: 禁止修改
+      placeholder: "- path/to/unrelated-module"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+      placeholder: "- [ ] "
+    validations:
+      required: true
+  - type: textarea
+    id: verify
+    attributes:
+      label: 验证命令
+      placeholder: "pnpm test"
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: 风险点
+      description: 标明权限、数据、外部调用、成本、并发、Agent 漂移等风险。
+    validations:
+      required: false
+  - type: textarea
+    id: docs
+    attributes:
+      label: 关联文档
+      placeholder: "- docs/项目架构决策ADR.md"
+    validations:
+      required: false

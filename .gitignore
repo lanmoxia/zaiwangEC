@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+dist/
+build/
+.next/
+.nuxt/
+.output/
+
+# Env and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+.turbo/
+.vite/
+.eslintcache
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local media and generated assets
+uploads/
+storage/
+tmp/
+temp/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.zip
+*.rar
+*.7z
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Test output
+coverage/
+playwright-report/
+test-results/

@@ -1,0 +1,27 @@
+name: AI Governance
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+jobs:
+  governance:
+    name: Check AI workflow rules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Save PR body
+        shell: bash
+        run: |
+          cat > pr_body.txt <<'EOF'
+          ${{ github.event.pull_request.body }}
+          EOF
+
+      - name: Validate required AI workflow files and task reference
+        shell: pwsh
+        run: |
+          ./scripts/check-ai-governance.ps1 `
+            -PrBodyPath "pr_body.txt" `
+            -PrTitle "${{ github.event.pull_request.title }}"
