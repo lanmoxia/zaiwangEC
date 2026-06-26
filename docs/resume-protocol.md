@@ -42,6 +42,7 @@
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\session-snapshot.ps1
+powershell -ExecutionPolicy Bypass -File scripts\check-task-state.ps1 -Mode Any -AllowDirty
 ```
 
 9. 输出恢复报告。
@@ -149,6 +150,12 @@ tasks/TASK-XXXX.progress.md
 - 每次被评审打回后。
 - 每次窗口即将结束前。
 - 发现阻塞时。
+
+## 门禁优先级
+
+恢复结果不能覆盖门禁结果。
+
+如果 `scripts/check-task-state.ps1`、Git hooks、CI、Codex Review 任一失败，应先修复失败原因，而不是继续开发。
 
 ## Claude 接力提示词
 

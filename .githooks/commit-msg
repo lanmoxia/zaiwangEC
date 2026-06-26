@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+if command -v pwsh >/dev/null 2>&1; then
+  PS=pwsh
+elif command -v powershell >/dev/null 2>&1; then
+  PS=powershell
+else
+  echo "PowerShell is required for governance hooks."
+  exit 1
+fi
+
+"$PS" -NoProfile -ExecutionPolicy Bypass -File scripts/check-commit-msg.ps1 -CommitMsgPath "$1"

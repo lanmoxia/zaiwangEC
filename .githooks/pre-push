@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+BRANCH="$(git branch --show-current)"
+
+if [ "$BRANCH" = "main" ] && [ "$ALLOW_MAIN_PUSH" != "1" ]; then
+  echo "Direct push to main is blocked."
+  echo "Use a task branch and PR. For bootstrap-only exceptions, set ALLOW_MAIN_PUSH=1."
+  exit 1
+fi
+
+if command -v pwsh >/dev/null 2>&1; then
+  PS=pwsh
+elif command -v powershell >/dev/null 2>&1; then
+  PS=powershell
+else
+  echo "PowerShell is required for governance hooks."
+  exit 1
+fi
+
+"$PS" -NoProfile -ExecutionPolicy Bypass -File scripts/check-task-state.ps1 -Mode Push -AllowDirty

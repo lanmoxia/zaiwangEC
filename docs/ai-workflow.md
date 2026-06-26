@@ -22,11 +22,16 @@
 | `tasks/TASK_TEMPLATE.md` | 任务单模板 |
 | `tasks/TASK-XXXX.progress.md` | 单个任务的细粒度进度与接力状态 |
 | `docs/resume-protocol.md` | 会话中断、跨设备、换窗口后的恢复协议 |
+| `docs/ROADMAP.md` | 长期路线图 |
+| `docs/DECISIONS.md` | 长期关键决策索引 |
+| `docs/git-branch-protection.md` | GitHub main 分支保护设置 |
 | `docs/codex-review-standard.md` | Codex 详细评审清单 |
 | `.github/pull_request_template.md` | PR 必填信息 |
 | `.github/ISSUE_TEMPLATE/task.yml` | GitHub 任务创建模板 |
 | `reviews/REVIEW_TEMPLATE.md` | 人工或 Codex 评审记录模板 |
 | `scripts/session-snapshot.ps1` | 一键输出当前分支、commit、工作区、任务状态 |
+| `scripts/start-task.ps1` | 任务开工门禁 |
+| `.githooks/` | 本地提交和推送门禁 |
 
 ## 标准流程
 
@@ -37,15 +42,15 @@
 ↓
 任务状态改为 Approved
 ↓
-Claude 新建任务分支
+运行 scripts/start-task.ps1 并新建任务分支
 ↓
 Claude 实现最小变更
 ↓
-Claude 本地验证
+Git hooks 和本地验证通过
 ↓
 Claude 提交 commit 并创建 PR
 ↓
-CI 自动检查
+CI 自动检查 PR 治理、任务状态、禁止路径、测试
 ↓
 Codex 按 AGENTS.md 和任务单评审
 ↓
@@ -115,6 +120,17 @@ PR 必须包含：
 
 然后输出恢复报告。状态不一致时，先恢复现场，不允许继续开发。
 
+## 硬门禁
+
+长期开发必须启用四道硬门禁：
+
+1. 开工门禁：`scripts/start-task.ps1` / `scripts/check-task-state.ps1`。
+2. 提交门禁：`.githooks/pre-commit`、`.githooks/commit-msg`。
+3. 推送门禁：`.githooks/pre-push`。
+4. PR/CI 门禁：`.github/workflows/ai-governance.yml`。
+
+任何 AI 不得通过 `--no-verify`、临时删除 hooks、跳过 CI 等方式绕过门禁。确需例外时，必须新建任务并由用户批准。
+
 ## 高风险变更
 
 以下变更必须单独任务、单独批准：
@@ -131,8 +147,10 @@ PR 必须包含：
 ## 最小落地顺序
 
 1. 建立本文件和相关模板。
-2. 用 `TASK-0001` 验证闭环。
-3. 初始化项目骨架。
-4. 增加基础 CI。
-5. 增加 `doctor` 环境检查。
-6. 再进入视频复刻业务开发。
+2. 建立硬门禁系统。
+3. 配置 GitHub main 分支保护。
+4. 用 `TASK-0001` 验证闭环。
+5. 初始化项目骨架。
+6. 增加基础 CI。
+7. 增加 `doctor` 环境检查。
+8. 再进入视频复刻业务开发。

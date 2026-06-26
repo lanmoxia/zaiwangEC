@@ -1,11 +1,13 @@
 # TASK-XXXX：任务标题
 
 > 状态：Draft / Approved / In Progress / Review / Changes Requested / Done / Blocked  
+> Status: Draft  
 > 创建人：  
 > Implementer：  
 > Reviewer：  
 > 关联需求：  
 > 关联ADR：  
+> 进度文件：tasks/TASK-XXXX.progress.md
 
 ## 1. 目标
 
@@ -30,6 +32,10 @@
 - `path/to/module`
 
 ### 禁止修改
+
+- `path/to/unrelated-module`
+
+### Forbidden Paths
 
 - `path/to/unrelated-module`
 
@@ -134,3 +140,11 @@ Schema、版本、错误类型、副作用
 - 稳定提交：更新 `last_good_commit`。
 - 中断前：更新 `current_step` 和 `next_action`。
 - 阻塞时：设置 `blocked: true` 并写明原因。
+
+## 13. 门禁要求
+
+- [ ] 开工前通过 `scripts/check-task-state.ps1 -TaskId TASK-XXXX -Mode Start`。
+- [ ] 正常开发使用 `scripts/start-task.ps1 -TaskId TASK-XXXX -CreateBranch`。
+- [ ] 提交信息包含 `TASK-XXXX`。
+- [ ] 不使用 `--no-verify` 绕过 Git hooks。
+- [ ] PR 通过 `scripts/check-pr-governance.ps1` 和 GitHub Actions。

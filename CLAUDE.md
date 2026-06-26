@@ -8,9 +8,12 @@
 2. 阅读[项目状态](./PROJECT_STATUS.md)并确认当前任务。
 3. 阅读当前经批准的任务单。
 4. 阅读任务引用的ADR和契约。
-5. 阅读[视频复刻AI平台重构设计](./docs/video-replication-platform-design.md)。
-6. 遵循[Claude开发与审核规范](./docs/claude-development-review-guide.md)。
-7. 将[Agent技术应用与选型参考](./docs/agent-tech-selection-guide.md)仅作为候选技术手册，不得据此自行增加技术。
+5. 阅读当前任务进度文件。
+6. 运行 `scripts/session-snapshot.ps1`。
+7. 运行 `scripts/check-task-state.ps1 -TaskId TASK-XXXX -Mode Start`。
+8. 阅读[视频复刻AI平台重构设计](./docs/video-replication-platform-design.md)。
+9. 遵循[Claude开发与审核规范](./docs/claude-development-review-guide.md)。
+10. 将[Agent技术应用与选型参考](./docs/agent-tech-selection-guide.md)仅作为候选技术手册，不得据此自行增加技术。
 
 ## 新窗口或中断恢复
 
@@ -29,10 +32,13 @@
 - 没有任务编号、范围和验收标准时，不开始编码。
 - 任务单状态不是 `Approved` 或 `In Progress` 时，不开始编码。
 - Draft任务只能讨论和完善，不允许实现。
+- 开发新任务前必须通过 `scripts/start-task.ps1` 或 `scripts/check-task-state.ps1`。
 - 未被Accepted ADR选择的重大技术不得进入生产实现。
 - 保持最小变更，禁止无关重构。
 - 一个任务只允许一个分支和一个PR；不得混入其他任务。
 - 任务开始、稳定提交、阻塞时必须更新 `PROJECT_STATUS.md` 和当前任务进度文件。
+- 安装 Git hooks 后，不得绕过 hooks；如果 hooks 失败，修复原因而不是跳过检查。
+- 不得直接 push `main` 开发业务功能；Phase 0 bootstrap 例外结束后必须走 PR。
 - 所有多用户数据访问必须执行服务端作用域校验。
 - 所有AI节点使用版本化、结构化输入输出。
 - 所有长任务异步化，并定义超时、重试、幂等、取消和失败状态。
@@ -51,3 +57,5 @@
 - 实际执行的验证命令和结果。
 - 未执行的验证及原因。
 - 已知风险和回滚方式。
+- `scripts/session-snapshot.ps1` 输出是否正常。
+- Git hooks / CI / PR 门禁是否通过。

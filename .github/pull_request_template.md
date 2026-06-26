@@ -1,15 +1,18 @@
 # PR 说明
 
 ## 关联任务
+<!-- governance:task -->
 
 - Task：`tasks/TASK-XXXX.md`
 - Issue：Closes #
 
 ## 任务目标
+<!-- governance:goal -->
 
 -
 
 ## 修改摘要
+<!-- governance:summary -->
 
 -
 
@@ -18,12 +21,14 @@
 -
 
 ## 验收标准映射
+<!-- governance:acceptance -->
 
 | 验收标准 | 实现位置 | 测试/证据 |
 |---|---|---|
 | | | |
 
 ## 验证结果
+<!-- governance:verification -->
 
 ```text
 填写实际执行的命令和结果。
@@ -34,6 +39,7 @@
 -
 
 ## 风险与回滚
+<!-- governance:risk -->
 
 - 风险：
 - 回滚：

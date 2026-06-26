@@ -4,16 +4,16 @@
 
 ```yaml
 project: video-replication-agent
-status: READY_FOR_TASK_0001
-current_task: TASK-0001
-current_task_file: tasks/TASK-0001.md
-current_task_progress_file: tasks/TASK-0001.progress.md
+status: REVIEW_TASK_0002
+current_task: TASK-0002
+current_task_file: tasks/TASK-0002.md
+current_task_progress_file: tasks/TASK-0002.progress.md
 current_branch: main
-last_good_commit: d229c3d
-implementer: unassigned
+last_good_commit: 90220d9
+implementer: codex
 reviewer: codex
-current_step: AI 开发闭环规则文件已建立，TASK-0001 已批准，接力协议已补充
-next_action: 提交并推送接力补充文件，然后让 Claude 执行恢复流程并输出 TASK-0001 实现计划
+current_step: TASK-0002 硬门禁系统已实现，等待提交、推送和 GitHub 分支保护配置
+next_action: 提交并推送 TASK-0002，然后执行 scripts/install-githooks.ps1 并按 docs/git-branch-protection.md 开启 main 分支保护
 blocked: false
 updated_at: 2026-06-26
 ```

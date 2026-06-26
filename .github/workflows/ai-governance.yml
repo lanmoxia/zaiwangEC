@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Save PR body
         shell: bash
@@ -19,9 +21,18 @@ jobs:
           ${{ github.event.pull_request.body }}
           EOF
 
-      - name: Validate required AI workflow files and task reference
+      - name: Validate AI governance
         shell: pwsh
         run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
           ./scripts/check-ai-governance.ps1 `
             -PrBodyPath "pr_body.txt" `
             -PrTitle "${{ github.event.pull_request.title }}"
+
+      - name: Validate PR scope against base branch
+        shell: pwsh
+        run: |
+          ./scripts/check-pr-governance.ps1 `
+            -PrBodyPath "pr_body.txt" `
+            -PrTitle "${{ github.event.pull_request.title }}" `
+            -BaseRef "origin/${{ github.base_ref }}"

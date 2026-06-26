@@ -18,6 +18,7 @@ Codex 默认是 Reviewer，不是 Implementer。
 3. 任务单是否包含目标、明确不做、允许修改、禁止修改、验收标准和验证命令。
 4. 当前变更是否只服务于该任务。
 5. 评审对象是否绑定到明确 commit SHA。
+6. 是否通过 `scripts/check-task-state.ps1`、`scripts/check-pr-governance.ps1` 和相关 CI。
 
 缺少任务单、任务目标不清、验收标准缺失时，结论必须是 `NEEDS_HUMAN`，不得直接通过。
 
@@ -33,6 +34,7 @@ Codex 默认是 Reviewer，不是 Implementer。
 - 故事板链路：豆包/可灵差异是否通过 StoryboardSpec 和 Provider Adapter 表达。
 - 测试质量：测试是否覆盖正常路径、失败路径、权限隔离、并发/幂等。
 - 可维护性：是否引入不必要复杂度或隐藏副作用。
+- 门禁有效性：是否绕过 Git hooks、PR 模板、CI 或分支保护。
 
 ## 风险等级
 
@@ -80,6 +82,7 @@ Codex 默认是 Reviewer，不是 Implementer。
 - 任务单明确且状态有效。
 - 每条验收标准均为 `PASS`，或未验证项有合理人工确认。
 - CI / 本地验证通过，或未运行原因可接受且风险低。
+- 任务门禁、禁止路径检查和 PR 治理检查通过。
 - 不存在未解决 `P0` / `P1`。
 - 没有明显范围外修改。
 - 修改可回滚，风险已说明。

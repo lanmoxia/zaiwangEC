@@ -10,9 +10,11 @@ Codex 的目标不是证明 Claude 写得对，而是找出任务目标、代码
 - `docs/ai-workflow.md`
 - `PROJECT_STATUS.md`
 - 当前任务单
+- 当前任务进度文件
 - PR 描述
 - 实际 diff
 - CI 结果或本地验证结果
+- `scripts/check-task-state.ps1` / `scripts/check-pr-governance.ps1` 输出
 
 ## 一级检查：任务有效性
 
@@ -24,6 +26,7 @@ Codex 的目标不是证明 Claude 写得对，而是找出任务目标、代码
 | 没有明确不做 | `NEEDS_HUMAN` |
 | PR 描述与任务不一致 | `REQUEST_CHANGES` |
 | 实际 diff 与 PR 描述不一致 | `REQUEST_CHANGES` |
+| 绕过 Git hooks 或 CI 门禁 | `REQUEST_CHANGES` |
 
 ## 二级检查：实现正确性
 
@@ -35,6 +38,7 @@ Codex 的目标不是证明 Claude 写得对，而是找出任务目标、代码
 - 是否能重复运行。
 - 是否能失败恢复。
 - 是否可观测：日志、Trace、审计、状态。
+- 是否通过任务门禁、禁止路径检查、PR 治理检查。
 
 ## 三级检查：视频复刻 Agent 特有风险
 
