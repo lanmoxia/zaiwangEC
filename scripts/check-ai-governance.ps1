@@ -26,12 +26,20 @@ if (-not (Test-Path "docs/ai-workflow.md")) {
   Fail "Missing docs/ai-workflow.md"
 }
 
+if (-not (Test-Path "docs/resume-protocol.md")) {
+  Fail "Missing docs/resume-protocol.md"
+}
+
 if (-not (Test-Path "docs/codex-review-standard.md")) {
   Fail "Missing docs/codex-review-standard.md"
 }
 
 if (-not (Test-Path "tasks/TASK_TEMPLATE.md")) {
   Fail "Missing tasks/TASK_TEMPLATE.md"
+}
+
+if (-not (Test-Path "scripts/session-snapshot.ps1")) {
+  Fail "Missing scripts/session-snapshot.ps1"
 }
 
 $text = $PrTitle

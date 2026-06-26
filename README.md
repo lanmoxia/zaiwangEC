@@ -24,7 +24,9 @@ PREPARE_AI_WORKFLOW
 2. `AGENTS.md`
 3. `PROJECT_STATUS.md`
 4. `docs/ai-workflow.md`
-5. 当前任务单
+5. `docs/resume-protocol.md`
+6. 当前任务单
+7. 当前任务进度文件
 
 ## 目录说明
 
@@ -35,6 +37,7 @@ PREPARE_AI_WORKFLOW
 | `PROJECT_STATUS.md` | 当前任务状态和中断恢复 |
 | `docs/` | 架构、流程、评审标准、技术选型文档 |
 | `tasks/` | 任务单 |
+| `tasks/*.progress.md` | 任务细粒度进度和接力状态 |
 | `reviews/` | 评审记录 |
 | `.github/` | PR 模板、Issue 模板、CI |
 | `scripts/` | 自动检查脚本 |
@@ -43,4 +46,12 @@ PREPARE_AI_WORKFLOW
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\check-ai-governance.ps1
+```
+
+## 会话快照
+
+Claude、Codex 或人工接力前，先运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\session-snapshot.ps1
 ```

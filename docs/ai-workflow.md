@@ -20,10 +20,13 @@
 | `AGENTS.md` | Codex 评审强制规则 |
 | `PROJECT_STATUS.md` | 当前任务和中断恢复状态 |
 | `tasks/TASK_TEMPLATE.md` | 任务单模板 |
+| `tasks/TASK-XXXX.progress.md` | 单个任务的细粒度进度与接力状态 |
+| `docs/resume-protocol.md` | 会话中断、跨设备、换窗口后的恢复协议 |
 | `docs/codex-review-standard.md` | Codex 详细评审清单 |
 | `.github/pull_request_template.md` | PR 必填信息 |
 | `.github/ISSUE_TEMPLATE/task.yml` | GitHub 任务创建模板 |
 | `reviews/REVIEW_TEMPLATE.md` | 人工或 Codex 评审记录模板 |
+| `scripts/session-snapshot.ps1` | 一键输出当前分支、commit、工作区、任务状态 |
 
 ## 标准流程
 
@@ -103,9 +106,12 @@ PR 必须包含：
 1. `CLAUDE.md`
 2. `AGENTS.md`
 3. `PROJECT_STATUS.md`
-4. 当前任务单
-5. `git status`
-6. 最近 commit
+4. `docs/resume-protocol.md`
+5. 当前任务单
+6. 当前任务进度文件
+7. `scripts/session-snapshot.ps1` 输出
+8. `git status`
+9. 最近 commit
 
 然后输出恢复报告。状态不一致时，先恢复现场，不允许继续开发。
 

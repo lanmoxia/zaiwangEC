@@ -7,12 +7,13 @@ project: video-replication-agent
 status: READY_FOR_TASK_0001
 current_task: TASK-0001
 current_task_file: tasks/TASK-0001.md
-current_branch: not_initialized
-last_good_commit: none
+current_task_progress_file: tasks/TASK-0001.progress.md
+current_branch: main
+last_good_commit: d229c3d
 implementer: unassigned
 reviewer: codex
-current_step: AI 开发闭环规则文件已建立，TASK-0001 已批准
-next_action: 提交并推送当前治理骨架，然后让 Claude 读取任务单并输出 TASK-0001 实现计划
+current_step: AI 开发闭环规则文件已建立，TASK-0001 已批准，接力协议已补充
+next_action: 提交并推送接力补充文件，然后让 Claude 执行恢复流程并输出 TASK-0001 实现计划
 blocked: false
 updated_at: 2026-06-26
 ```
@@ -26,13 +27,16 @@ updated_at: 2026-06-26
 3. 阅读 `docs/ai-workflow.md`。
 4. 阅读本文件。
 5. 阅读 `current_task_file` 指向的任务单。
-6. 检查 Git 状态：
+6. 阅读 `current_task_progress_file` 指向的任务进度文件。
+7. 阅读 `docs/resume-protocol.md`。
+8. 运行 `scripts/session-snapshot.ps1`。
+9. 检查 Git 状态：
    - 当前分支
    - 最近 commit
    - 未提交修改
    - 是否与 `last_good_commit` 一致
-7. 输出恢复报告。
-8. 用户确认或任务状态一致后，再继续执行。
+10. 输出恢复报告。
+11. 用户确认或任务状态一致后，再继续执行。
 
 ## 恢复报告格式
 
@@ -54,5 +58,6 @@ updated_at: 2026-06-26
 - 每个任务开始时更新 `current_task`、`current_task_file`、`current_branch`。
 - 每个稳定 commit 后更新 `last_good_commit`。
 - 如果窗口中断前无法提交，必须至少更新 `current_step` 和 `next_action`。
+- 每个任务必须维护对应的 `tasks/TASK-XXXX.progress.md`。
 - 如果发现代码状态、任务状态、PR 状态不一致，设置 `blocked: true` 并进入人工确认。
 - 不允许用聊天摘要替代本文件。
